@@ -33,12 +33,17 @@ app.get("/CreateAccount", (request, response) => {
 app.use(bodyParser.urlencoded({extended:false}));
 
 app.post("/AccountSignup", (request, response) => {
-    let {user, email} = request.body;
-    response.render("AccountSignup.ejs", {username: user, emailaddr: email});
+    let {username, email} = request.body;
+    response.render("AccountSignup.ejs", {username: username, emailaddr: email});
 });
 
 app.get("/PasswordReset", (request, response) => {
     response.render("passwordReset.ejs");
+});
+
+/* Goes back to Homepage.ejs */
+app.get("/Homepage", (request, response) => {
+    response.render("Homepage.ejs");
 });
 
 storeServer.listen(portNumber);
