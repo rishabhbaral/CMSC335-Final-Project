@@ -23,17 +23,22 @@ app.set("view engine", "ejs");
 
 //Formatting the mainpage response
 app.get("/", (request, response) => {
-  response.render("Homepage.ejs");
+    response.render("Homepage.ejs");
 });
+
 app.get("/CreateAccount", (request, response) => {
     response.render("AccountCreation.ejs");
 });
+
 app.use(bodyParser.urlencoded({extended:false}));
+
 app.post("/AccountSignup", (request, response) => {
     let {user, email} = request.body;
     response.render("AccountSignup.ejs", {username: user, emailaddr: email});
 });
+
 app.get("/PasswordReset", (request, response) => {
     response.render("passwordReset.ejs");
 });
+
 storeServer.listen(portNumber);
