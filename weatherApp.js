@@ -25,8 +25,13 @@ app.set("view engine", "ejs");
 app.get("/", (request, response) => {
   response.render("Homepage.ejs");
 });
-app.get("/AccountSignup", (request, response) => {
-    response.render("AccountSignup.ejs");
+app.get("/CreateAccount", (request, response) => {
+    response.render("AccountCreation.ejs");
+});
+app.use(bodyParser.urlencoded({extended:false}));
+app.post("/AccountSignup", (request, response) => {
+    let {user, email} = request.body;
+    response.render("AccountSignup.ejs", {username: user, emailaddr: email});
 });
 app.get("/PasswordReset", (request, response) => {
     response.render("passwordReset.ejs");
