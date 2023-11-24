@@ -6,3 +6,9 @@ Requirements:
 3. Your application must rely on MongoDB.
 4. Your application must have at least one form where users provide some data.
 5. Your application must use some CSS.
+
+templates Folder
+
+AccountCreation.ejs
+1. Designed for users new to the site.
+2. To sign up, each user will be prompted to create an account, where they provide a username, password, and email address.
