@@ -41,5 +41,9 @@ app.get("/PasswordReset", (request, response) => {
     response.render("passwordReset.ejs");
 });
 
+//return to homepage
+app.get("/Homepage", (request, response) => {
+    response.render("Homepage.ejs");
+});
 
 storeServer.listen(portNumber);
