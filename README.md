@@ -29,6 +29,5 @@ Requirements:
     - Change some of their login information.
 
 **Features to add**
-- For AccountSignup.ejs, I think we should change div to form, because we want the submit button to have some functionality.
 - How are we going to be keeping track of users who've already created accounts? MongoDB, cookies?
 - Need to figure out MongoDB migration (User info --> database)

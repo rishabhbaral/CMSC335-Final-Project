@@ -14,6 +14,27 @@ process.stdin.setEncoding("utf8");
 //indicate that the server is live
 const storeServer = http.createServer(app);
 console.log(`Web server is running at http://localhost:${portNumber}`);
+//Define the prompt that the CLI will use
+const prompt = "Type stop to shutdown the server: ";
+//show the prompt on the screen
+process.stdout.write(prompt);
+
+//Now we see what the user wants
+process.stdin.on("readable", function () {
+  let dataInput = process.stdin.read();
+  if (dataInput !== null) {
+    let command = dataInput.trim();
+    if (command === "stop") {//Done with application (applicant) or Admin work (Administrator). Close Server.
+      process.stdout.write("Shutting Down the Server\n");
+      process.exit(0);
+    } else{//Invalid option chosen
+      process.stdout.write(`Invalid Command: ${command}\n`);
+    }
+    //the two lines below this will be for repeating the command
+    process.stdout.write(prompt);
+    process.stdin.resume();
+  }
+})
 
 /* directory where templates will reside */
 app.set("views", path.resolve(__dirname, "templates"));
