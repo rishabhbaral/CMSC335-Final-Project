@@ -46,6 +46,7 @@ Requirements:
 
 - In the meantime, I've started working on the MongoDB application, and I've implemented the insertUser feature.
     - However, what other additional features should we add? Remove user? Remove all users?
+    
 **New**
 - I've made considerable changes to MongoDB.
 - When the user wants to proceed, the data is added to the database. Otherwise, the user is brought back to the registration page, and the data that the user just entered will NOT be added to the database.
