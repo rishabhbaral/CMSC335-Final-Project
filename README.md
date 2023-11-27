@@ -34,7 +34,11 @@ Requirements:
 - Need to figure out dynamic port number for forms (can't make server constant)
 
 **Rishabh's comments**
-
+- we need to basically do the following: 
+    1. we need to have the user sign up (new user)
+    2. once they sign up and send info to database, return to homepage
+    3. need to link login with welcome page
+    4. implement welcome page to be the display page for weather --> may need another collection in DB (store/retrieve)
 **Kevin's comments**
 - To keep track of users who've already created accounts, we can for sure use MongoDB.
     - How far are you into the MongoDB portion of project 6? Once you have that down, we should have a much better understanding as to how the MongoDB portion of the project should work.
