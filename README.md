@@ -32,3 +32,5 @@ Requirements:
 - For AccountSignup.ejs, I think we should change div to form, because we want the submit button to have some functionality.
 - How are we going to be keeping track of users who've already created accounts? MongoDB, cookies?
 - How do we add users to the database? Our information is in one file, insertion and deletion are in another.
+
+**Can you see this?**
