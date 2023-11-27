@@ -39,14 +39,14 @@ Requirements:
     2. once they sign up and send info to database, return to homepage
     3. need to link login with welcome page
     4. implement welcome page to be the display page for weather --> may need another collection in DB (store/retrieve)
+
 **Kevin's comments**
 - To keep track of users who've already created accounts, we can for sure use MongoDB.
     - How far are you into the MongoDB portion of project 6? Once you have that down, we should have a much better understanding as to how the MongoDB portion of the project should work.
 
 - In the meantime, I've started working on the MongoDB application, and I've implemented the insertUser feature.
     - However, what other additional features should we add? Remove user? Remove all users?
-
-- In the meantime, items are being added to the MongoDB collection.
-- However, one problem we're having right now is that the user has 2 choices on the AccountSignup.ejs file: edit data or proceed. We'll probably have to reference older projects such as TerpStore for this one.
-
-- Let me know if you have additional questions.
+**New**
+- I've made considerable changes to MongoDB.
+- When the user wants to proceed, the data is added to the database. Otherwise, the user is brought back to the registration page, and the data that the user just entered will NOT be added to the database.
+- I've also added a feature that empties the database. This will be helpful especially when we want to debug the Mongo implementation.
