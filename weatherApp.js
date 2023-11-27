@@ -34,7 +34,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 
 app.post("/AccountSignup", (request, response) => {
     let {username, email} = request.body;
-    response.render("AccountSignup.ejs", {username: username, emailaddr: email});
+    response.render("AccountSignup.ejs", {userid: username, emailaddr: email});
 });
 
 app.get("/PasswordReset", (request, response) => {
