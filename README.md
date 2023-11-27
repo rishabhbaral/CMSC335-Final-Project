@@ -32,3 +32,17 @@ Requirements:
 - How are we going to be keeping track of users who've already created accounts? MongoDB, cookies?
 - Need to figure out MongoDB migration (User info --> database)
 - Need to figure out dynamic port number for forms (can't make server constant)
+
+**Rishabh's comments**
+
+**Kevin's comments**
+- To keep track of users who've already created accounts, we can for sure use MongoDB.
+    - How far are you into the MongoDB portion of project 6? Once you have that down, we should have a much better understanding as to how the MongoDB portion of the project should work.
+
+- In the meantime, I've started working on the MongoDB application, and I've implemented the insertUser feature.
+    - However, what other additional features should we add? Remove user? Remove all users?
+
+- In the meantime, items are being added to the MongoDB collection.
+- However, one problem we're having right now is that the user has 2 choices on the AccountSignup.ejs file: edit data or proceed. We'll probably have to reference older projects such as TerpStore for this one.
+
+- Let me know if you have additional questions.
