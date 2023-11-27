@@ -26,6 +26,11 @@ require("dotenv").config({ path: path.resolve(__dirname, 'credentialsDontPost/.e
 const username = process.env.MONGO_DB_USERNAME;
 const password = process.env.MONGO_DB_PASSWORD;
 
+/* Variables or MongoDB collection */
+let currName = "";
+let currEmail = "";
+let currPassword = "";
+
 /* Our database and collection */
 const databaseAndCollection = {db: "ourData", collection: "weatherData"};
 const { MongoClient, ServerApiVersion } = require('mongodb');
@@ -81,35 +86,16 @@ app.post("/AccountSignup", async (request, response) => {
   const uri = `mongodb+srv://${username}:${password}@cluster0.vyuzvd9.mongodb.net/`;
   const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
-    try {
-      /* Checks whether user wants to proceed or change data */
-      document.getElementById("sendInfo").addEventListener("click", sendInfo);
-      document.getElementById("goBack").addEventListener("click", goBack);
-
-      /* Use MongoDB to store the data. */
-      let {username, email, password} = request.body;
-      let user = {userName: username, userEmail: email, 
-                        userPassword: password};
-      await insertUser(client, databaseAndCollection, user);
-
-      response.render("AccountSignup.ejs", {userid: username, emailaddr: email});
-    } catch(e) {
-      console.error(e);
-    } finally {
-      await client.close();
-    }
-});
-
-async function sendInfo() {
-  const uri = `mongodb+srv://${username}:${password}@cluster0.vyuzvd9.mongodb.net/`;
-  const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-
   try {
-    /* Use MongoDB to store the data. */
+    //Use MongoDB to store the data.
     let {username, email, password} = request.body;
+    //Updates global variables.
+    currName = username;
+    currEmail = email;
+    currPassword = password;
+    //Stores data in form of JSON.
     let user = {userName: username, userEmail: email, 
                       userPassword: password};
-    await insertUser(client, databaseAndCollection, user);
 
     response.render("AccountSignup.ejs", {userid: username, emailaddr: email});
   } catch(e) {
@@ -117,11 +103,24 @@ async function sendInfo() {
   } finally {
     await client.close();
   }
-}
+});
 
-async function goBack() {
-  
-}
+app.get("/sendInfo", async (request, response) => {
+  const uri = `mongodb+srv://${username}:${password}@cluster0.vyuzvd9.mongodb.net/`;
+  const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+
+  try {
+    let user = {userName: currName, userEmail: currEmail, 
+                      userPassword: currPassword};
+    await insertUser(client, databaseAndCollection, user);
+
+    response.render("Homepage.ejs");
+  } catch(e) {
+    console.error(e);
+  } finally {
+    await client.close();
+  }
+});
 
 async function insertUser(client, databaseAndCollection, user) {
   const result = await client.db(databaseAndCollection.db).collection(databaseAndCollection.collection).insertOne(user);
@@ -131,10 +130,31 @@ app.get("/PasswordReset", (request, response) => {
     response.render("passwordReset.ejs");
 });
 
-/* Goes back to Homepage.ejs */
+/* Goes back to Homepage.ejs. */
 app.get("/Homepage", (request, response) => {
     response.render("Homepage.ejs");
 });
+
+/* Removes all data in current database. */
+app.get("/clearCollection", async (request, response) => {
+  const uri = `mongodb+srv://${username}:${password}@cluster0.vyuzvd9.mongodb.net/`;
+  const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+
+  try {
+    await clearCollection(client, databaseAndCollection);
+    response.render("Homepage.ejs"); //stays on default page
+  } catch(e) {
+    console.error(e);
+  } finally {
+    await client.close();
+  }
+});
+
+async function clearCollection(client, databaseAndCollection) {
+  const result = await client.db(databaseAndCollection.db)
+                             .collection(databaseAndCollection.collection)
+                             .deleteMany({}); //deletes all content
+}
 
 main().catch(console.error);
 
