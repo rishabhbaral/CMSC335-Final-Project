@@ -51,7 +51,7 @@ Requirements:
 - Ths user can now update his password in case he forgot it. The Mongo collection shows the update.
 
 **Features to add**
-MongoDB
+**MongoDB**
 - Check for the login info entered. 
     - If the username already exists in the system and the user wants to create a new account, inform him that his username already exists.
     - On the other hand, if the user wants to log in and the username doesn't currently exist in the system, inform him that he needs to create an account first.
