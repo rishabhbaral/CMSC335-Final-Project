@@ -39,8 +39,6 @@ Requirements:
     2. once they sign up and send info to database, return to homepage
     3. need to link login with welcome page
     4. implement welcome page to be the display page for weather --> may need another collection in DB (store/retrieve)
-
-**Kevin's comments**
     
 **11/27**
 - I've made considerable changes to MongoDB.
@@ -50,10 +48,17 @@ Requirements:
 **11/28**
 - Ths user can now update his password in case he forgot it. The Mongo collection shows the update.
 
+**Kevin's comments**
+- At this point, I think I've done my part when it comes to MongoDB.
+    - The DB can now add new users, allow users to update their passwords.
+    - The DB also checks if the data is valid. See the Completed section below for more details.
+
 **Features to add**
-**MongoDB**
+- For "Confirm Password", make sure the 2 passwords match.
+- We also want to create another DB where the user can add cities they want to laccess.
+
+**Completed**
 - Check for the login info entered. 
     - If the username already exists in the system and the user wants to create a new account, inform him that his username already exists.
     - On the other hand, if the user wants to log in and the username doesn't currently exist in the system, inform him that he needs to create an account first.
-
-We also want to create another DB where the user can add cities they want to access.
+    - For "Confirm Password", make sure the 2 passwords match.
