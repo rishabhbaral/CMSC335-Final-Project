@@ -222,7 +222,10 @@ async function lookUpUser(client, databaseAndCollection, user) {
 app.get("/Homepage", (request, response) => {
     response.render("Homepage.ejs");
 });
-
+/*Sends User to Welcome Page*/
+app.get("/Welcome", (request, response)=>{
+  response.render("Welcome.ejs", {user: username});
+});
 /* Removes all data in current database. */
 app.get("/clearCollection", async (request, response) => {
   const uri = `mongodb+srv://${username}:${password}@cluster0.vyuzvd9.mongodb.net/`;
