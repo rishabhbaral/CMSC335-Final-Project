@@ -50,4 +50,10 @@ Requirements:
 **11/28**
 - Ths user can now update his password in case he forgot it. The Mongo collection shows the update.
 
-**To do**
+**Features to add**
+MongoDB
+- Check for the login info entered. 
+    - If the username already exists in the system and the user wants to create a new account, inform him that his username already exists.
+    - On the other hand, if the user wants to log in and the username doesn't currently exist in the system, inform him that he needs to create an account first.
+
+We also want to create another DB where the user can add cities they want to access.
