@@ -109,20 +109,24 @@ app.post("/AccountSignup", async (request, response) => {
 
   try {
     //Use MongoDB to store the data.
-    let {username, email, password} = request.body;
+    let {username, email, confirmPassword, password} = request.body;
     //Updates global variables.
     currName = username;
     currEmail = email;
     currPassword = password;
 
-    let user = {userName: username, userEmail: email, userPassword: password}
-    let status = await lookUpUser(client, databaseAndCollection, user);
-    if (status === true) { //user already exists, do nothing
-      response.render("UserAlreadyExists.ejs");
-    } else { //add user to collection
-      response.render("AccountSignup.ejs", {userid: username, emailaddr: email});
+    //Checks if passwords match.
+    if (confirmPassword !== password) {
+      response.render("passwordIncorrect.ejs");
+    } else {
+      let user = {userName: username, userEmail: email, userPassword: password}
+      let status = await lookUpUser(client, databaseAndCollection, user);
+      if (status === true) { //user already exists, do nothing
+        response.render("UserAlreadyExists.ejs");
+      } else { //add user to collection
+        response.render("AccountSignup.ejs", {userid: username, emailaddr: email});
+      }
     }
-
   } catch(e) {
     console.error(e);
   } finally {
