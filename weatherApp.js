@@ -82,6 +82,27 @@ app.get("/CreateAccount", (request, response) => {
 /* Initializes request.body with post information */ 
 app.use(bodyParser.urlencoded({extended:false}));
 
+app.post("/signIn", async (request, response) => {
+  const uri = `mongodb+srv://${username}:${password}@cluster0.vyuzvd9.mongodb.net/`;
+  const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+
+  try {
+    let {singInUsername, signInPassword} = request.body;
+
+    let user = {userName: singInUsername, userPassword: signInPassword};
+    let status = await lookUpUser(client, databaseAndCollection, user);
+    if (status == true) { //user already exists
+      response.render("loginSuccess.ejs")
+    } else { //user DOESN'T exist
+      response.render("UserNotFound.ejs");
+    }
+  } catch(e) {
+    console.error(e);
+  } finally {
+    await client.close();
+  }
+});
+
 app.post("/AccountSignup", async (request, response) => {
   const uri = `mongodb+srv://${username}:${password}@cluster0.vyuzvd9.mongodb.net/`;
   const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
@@ -94,7 +115,14 @@ app.post("/AccountSignup", async (request, response) => {
     currEmail = email;
     currPassword = password;
 
-    response.render("AccountSignup.ejs", {userid: username, emailaddr: email});
+    let user = {userName: username, userEmail: email, userPassword: password}
+    let status = await lookUpUser(client, databaseAndCollection, user);
+    if (status === true) { //user already exists, do nothing
+      response.render("UserAlreadyExists.ejs");
+    } else { //add user to collection
+      response.render("AccountSignup.ejs", {userid: username, emailaddr: email});
+    }
+
   } catch(e) {
     console.error(e);
   } finally {
@@ -109,8 +137,8 @@ app.get("/sendInfo", async (request, response) => {
   try {
     //Stores data in form of JSON.
     let user = {userName: currName, userEmail: currEmail, userPassword: currPassword};
-    await insertUser(client, databaseAndCollection, user);
 
+    await insertUser(client, databaseAndCollection, user);
     response.render("Homepage.ejs");
   } catch(e) {
     console.error(e);
@@ -184,11 +212,9 @@ async function lookUpUser(client, databaseAndCollection, user) {
                       .findOne(filter);
 
   if (result) {
-      console.log("username " + result.userName)
-      console.log("password " + result.userPassword);
-      console.log("email " + result.userEmail);
+      return true;
   } else {
-      console.log("No user found");
+      return false;
   }
 }
 
