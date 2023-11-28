@@ -41,13 +41,13 @@ Requirements:
     4. implement welcome page to be the display page for weather --> may need another collection in DB (store/retrieve)
 
 **Kevin's comments**
-- To keep track of users who've already created accounts, we can for sure use MongoDB.
-    - How far are you into the MongoDB portion of project 6? Once you have that down, we should have a much better understanding as to how the MongoDB portion of the project should work.
-
-- In the meantime, I've started working on the MongoDB application, and I've implemented the insertUser feature.
-    - However, what other additional features should we add? Remove user? Remove all users?
     
-**New**
+**11/27**
 - I've made considerable changes to MongoDB.
 - When the user wants to proceed, the data is added to the database. Otherwise, the user is brought back to the registration page, and the data that the user just entered will NOT be added to the database.
 - I've also added a feature that empties the database. This will be helpful especially when we want to debug the Mongo implementation.
+
+**11/28**
+- Ths user can now update his password in case he forgot it. The Mongo collection shows the update.
+
+**To do**
