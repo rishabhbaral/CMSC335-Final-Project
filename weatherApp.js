@@ -93,9 +93,6 @@ app.post("/AccountSignup", async (request, response) => {
     currName = username;
     currEmail = email;
     currPassword = password;
-    //Stores data in form of JSON.
-    let user = {userName: username, userEmail: email, 
-                      userPassword: password};
 
     response.render("AccountSignup.ejs", {userid: username, emailaddr: email});
   } catch(e) {
@@ -110,8 +107,8 @@ app.get("/sendInfo", async (request, response) => {
   const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
   try {
-    let user = {userName: currName, userEmail: currEmail, 
-                      userPassword: currPassword};
+    //Stores data in form of JSON.
+    let user = {userName: currName, userEmail: currEmail, userPassword: currPassword};
     await insertUser(client, databaseAndCollection, user);
 
     response.render("Homepage.ejs");
@@ -126,9 +123,74 @@ async function insertUser(client, databaseAndCollection, user) {
   const result = await client.db(databaseAndCollection.db).collection(databaseAndCollection.collection).insertOne(user);
 }
 
-app.get("/PasswordReset", (request, response) => {
-    response.render("passwordReset.ejs");
+app.get("/passwordReset", (request, response) => {
+  response.render("passwordReset.ejs");
 });
+
+app.post("/confirmNewPassword", async (request, response) => {
+  const uri = `mongodb+srv://${username}:${password}@cluster0.vyuzvd9.mongodb.net/`;
+  const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+
+  try {
+    await client.connect();
+
+    //Use MongoDB to store the data.
+    let {confirmUsername, newPassword, confirmEmail} = request.body;
+    //Updates global variables.
+    currName = confirmUsername;
+    currEmail = confirmEmail;
+    currPassword = newPassword;
+
+    //For debugging purposes
+    console.log("name " + currName);
+    console.log("password: " + currPassword);
+    console.log("email " + currEmail);
+
+    //Stores data in form of JSON.
+    let targetValues = {userName: currName, userEmail: currEmail} //values to filter for
+    let newValue = {userPassword: currPassword}; //values to change
+    await updateUser(client, databaseAndCollection, targetValues, newValue);
+    await lookUpUser(client, databaseAndCollection, targetValues);
+  } catch(e) {
+    console.error(e);
+  } finally {
+    await client.close();
+  }
+  
+  response.render("confirmNewPassword.ejs");
+});
+
+/* Updates login info for particular user. */
+async function updateUser(client, databaseAndCollection, targetValues, newValue) {
+  //For debugging purposes
+  console.log("old username: " + targetValues.userName);
+  console.log("old email: " + targetValues.userEmail);
+  console.log("new password: " + newValue.userPassword);
+
+  let filter = targetValues;
+  let update = {$set: newValue};
+
+  const result = await client.db(databaseAndCollection.db)
+    .collection(databaseAndCollection.collection)
+    .updateOne(filter, update);
+  console.log("modified: " + result.modifiedCount);
+}
+
+/* Finds user that matches given parameters */
+async function lookUpUser(client, databaseAndCollection, user) {
+  let filter = user;
+  const result = await client.db(databaseAndCollection.db)
+                      .collection(databaseAndCollection.collection)
+                      .findOne(filter);
+
+  if (result) {
+      console.log("username " + result.userName)
+      console.log("password " + result.userPassword);
+      console.log("email " + result.userEmail);
+  } else {
+      console.log("No user found");
+  }
+}
 
 /* Goes back to Homepage.ejs. */
 app.get("/Homepage", (request, response) => {
