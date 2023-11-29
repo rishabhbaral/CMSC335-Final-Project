@@ -51,6 +51,12 @@ Requirements:
 **11/29**
 - Removed access to homepage from welcome page (will be reimplemented with logout button)
 - added favicon to welcome page (need to see whats wrong) and changed page title
+    - I've also been unable to get it to work, but here's what I've tried so far:
+        - Tried making the favicon-16x16 and favicon-32x32 files of type ico.
+        - Tried copying and pasting them outside of the folder.
+        - At this point, I'm honestly unsure of what else there is to do. I've tried looking up countless resources online with respect to this issue, and based on what I've read and tried out, it looks like it should work.
+        - Perhaps we need to adjust the size? But if it's 16x16 or 32x32, that should be fine.
+
 **Kevin's comments**
 - At this point, I think I've done my part when it comes to MongoDB.
     - The DB can now add new users, allow users to update their passwords.
