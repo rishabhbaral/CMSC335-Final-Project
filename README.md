@@ -47,6 +47,7 @@ Requirements:
 
 **11/28**
 - Ths user can now update his password in case he forgot it. The Mongo collection shows the update.
+- The user can now check their local weather, will need to be decided later whether we want to add multi-city or not.
 
 **Kevin's comments**
 - At this point, I think I've done my part when it comes to MongoDB.
