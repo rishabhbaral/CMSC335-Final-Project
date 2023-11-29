@@ -55,8 +55,11 @@ Requirements:
     - The DB also checks if the data is valid. See the Completed section below for more details.
 
 **Features to add**
-- For "Confirm Password", make sure the 2 passwords match.
-- We also want to create another DB where the user can add cities they want to laccess.
+- We also want to create another DB where the user can add cities they want to access.
+    - Create another Mongo collection.
+    - The info in Welcome.ejs must be stored in a form if we want the submit button to have functionality.
+    - What kind of info should this Mongo collection have?
+    - Rishabh will handle the weather API stuff.
 
 **Completed**
 - Check for the login info entered. 
