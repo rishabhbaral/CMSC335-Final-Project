@@ -31,8 +31,10 @@ let currName = "";
 let currEmail = "";
 let currPassword = "";
 
-/* Our database and collection */
+/* Our database and collection for user info */
 const databaseAndCollection = {db: "ourData", collection: "weatherData"};
+/* HERE CREATE A NEW DB TO STORE CITIES */
+
 const { MongoClient, ServerApiVersion } = require('mongodb');
 async function main() {
   const uri = `mongodb+srv://${username}:${password}@cluster0.vyuzvd9.mongodb.net/`;
@@ -87,9 +89,11 @@ app.post("/signIn", async (request, response) => {
   const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
   try {
-    let {singInUsername, signInPassword} = request.body;
+    let {signInUsername, signInPassword} = request.body;
+    currName = signInUsername;
+    currPass = signInPassword;
 
-    let user = {userName: singInUsername, userPassword: signInPassword};
+    let user = {userName: signInUsername, userPassword: signInPassword};
     let status = await lookUpUser(client, databaseAndCollection, user);
     if (status == true) { //user already exists
       response.render("loginSuccess.ejs")
@@ -182,7 +186,6 @@ app.post("/confirmNewPassword", async (request, response) => {
     let targetValues = {userName: currName, userEmail: currEmail} //values to filter for
     let newValue = {userPassword: currPassword}; //values to change
     await updateUser(client, databaseAndCollection, targetValues, newValue);
-    await lookUpUser(client, databaseAndCollection, targetValues);
   } catch(e) {
     console.error(e);
   } finally {
@@ -226,10 +229,12 @@ async function lookUpUser(client, databaseAndCollection, user) {
 app.get("/Homepage", (request, response) => {
     response.render("Homepage.ejs");
 });
+
 /*Sends User to Welcome Page*/
 app.get("/Welcome", (request, response)=>{
-  response.render("Welcome.ejs", {user: username});
+  response.render("Welcome.ejs", {user: currName});
 });
+
 /* Removes all data in current database. */
 app.get("/clearCollection", async (request, response) => {
   const uri = `mongodb+srv://${username}:${password}@cluster0.vyuzvd9.mongodb.net/`;

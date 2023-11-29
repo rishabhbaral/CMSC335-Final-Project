@@ -63,3 +63,7 @@ Requirements:
     - If the username already exists in the system and the user wants to create a new account, inform him that his username already exists.
     - On the other hand, if the user wants to log in and the username doesn't currently exist in the system, inform him that he needs to create an account first.
     - For "Confirm Password", make sure the 2 passwords match.
+
+**Recent fixes**
+- To go to the Welcome page, HOME is now replaced by WELCOME
+- When the user is directed to the WELCOME page, instead of the Mongo username, the username of the user who just logged in is printed to the screen.
