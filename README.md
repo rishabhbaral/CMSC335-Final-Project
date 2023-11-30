@@ -48,6 +48,7 @@ Requirements:
 **11/28**
 - Ths user can now update his password in case he forgot it. The Mongo collection shows the update.
 - The user can now check their local weather, will need to be decided later whether we want to add multi-city or not.
+
 **11/29**
 - Removed access to homepage from welcome page (will be reimplemented with logout button)
 - added favicon to welcome page (need to see whats wrong) and changed page title
