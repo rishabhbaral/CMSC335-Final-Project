@@ -4,7 +4,7 @@ const ejs = require("ejs");
 const fs = require("fs");
 const bodyParser = require("body-parser"); /* To handle post parameters */
 const app = express(); /* app is a request handler function */
-const portNumber = 5000; /* Fix the port that the server will use*/
+const portNumber = 5000; //fixed port
 const httpSuccessStatus = 200;/*Set the Server to be always working*/
 
 //Set the encoding for the text that will be rendered (UTF-8)
