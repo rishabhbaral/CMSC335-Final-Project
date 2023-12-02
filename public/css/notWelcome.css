@@ -1,0 +1,66 @@
+/* The main colors that I am using are: */
+/* #85c1e9 (Sky Blue) */
+/* #C1E985 (Medium Spring Bud) */
+
+/* Importing the Merriweather Google font. */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Merriweather:wght@300&display=swap');
+
+
+/* The titles will have this font. */
+h1 {
+    font-family: 'DM Serif Display', serif;
+}
+
+/* The text for the subheaders will have this font. */
+h2 {
+    font-family: 'Merriweather', 'serif';
+}
+
+/* This is the background color. It's the basis for most
+   of the other colors that I use. */
+body {
+    background-color: #85c1e9;
+}
+
+/* This is for the forms. It has a similar color to the
+   the background color. */
+fieldset {
+    background-color: #5AABE1;
+    border-color: #2F95D9;
+    border-style: groove;
+    border-width: 5px;
+}
+
+/* This is for the regular buttons and submit buttons. */
+input[type="button"], input[type="submit"] {
+    border-radius: 5px;
+    background-color: #C1E985;
+}
+
+/* This is for the reset buttons. I wanted it to be a
+   a different color from the submit buttons. */
+input[type="reset"] {
+    border-radius: 5px;
+    background-color: #E985C1;
+}
+
+/* In case there is a cancel/reset button that is
+   not technically defined as a reset button. */
+input[type=button].cancelButton {
+    border-radius: 5px;
+    background-color: #E985C1;
+}
+
+/* The color for the unvisited links. */
+a:link {
+    color: #C06223;
+}
+
+/* The color for the visited links. */
+a:visited {
+    color: #944B1B;
+}
+
+/* Color references are here: */
+/* Blue analogous: #858FE9, #85E9DF */
+/* Green analogous: #8FE985, #E9DF85 */
