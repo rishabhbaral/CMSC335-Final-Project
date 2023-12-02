@@ -7,6 +7,7 @@ const app = express(); /* app is a request handler function */
 const portNumber = 5000; /* Fix the port that the server will use*/
 const httpSuccessStatus = 200;/*Set the Server to be always working*/
 
+
 //Set the encoding for the text that will be rendered (UTF-8)
 process.stdin.setEncoding("utf8");
 
@@ -71,6 +72,12 @@ app.set("views", path.resolve(__dirname, "templates"));
 
 /* view/templating engine */
 app.set("view engine", "ejs");
+
+
+/* This is to get the CSS working for the .ejs files. I hope that
+   this doesn't mess other stuff up. */
+app.use(express.static(__dirname + '/public'));
+
 
 //Formatting the mainpage response
 app.get("/", (request, response) => {
