@@ -44,14 +44,21 @@ input[type="reset"] {
     background-color: #E985C1;
 }
 
+/* In case there is a cancel/reset button that is
+   not technically defined as a reset button. */
+input[type=button].cancelButton {
+    border-radius: 5px;
+    background-color: #E985C1;
+}
+
 /* The color for the unvisited links. */
 a:link {
-    color: #E1905A;
+    color: #C06223;
 }
 
 /* The color for the visited links. */
 a:visited {
-    color: #C06223;
+    color: #944B1B;
 }
 
 /* Color references are here: */
