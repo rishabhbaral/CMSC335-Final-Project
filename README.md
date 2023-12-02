@@ -28,6 +28,30 @@ Requirements:
     - Send their information to the database.
     - Change some of their login information.
 
+**confirmNewPassword.ejs**
+- Informs the user that his password has been reset.
+
+**Homepage.ejs**
+- The user can either log in to his account or create a new one.
+
+**loginSuccess.ejs**
+- Informs the user that he has logged in.
+
+**passwordIncorrect.ejs**
+- Informs the user that the login was unsuccessful due to an incorrect password.
+
+**passwordReset.ejs**
+- The user resets his password.
+
+**UserAlreadyExists.ejs**
+- Cannot create a new account, since one already exists with the information given.
+
+**UserNotFound.ejs**
+- Login value, since no user was found with the given information.
+
+**Welcome.ejs**
+- RISHABH, COMPLETE THIS PART.
+
 **Features to add**
 - How are we going to be keeping track of users who've already created accounts? MongoDB, cookies?
 - Need to figure out MongoDB migration (User info --> database)

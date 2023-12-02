@@ -7,6 +7,7 @@ const app = express(); /* app is a request handler function */
 const portNumber = 5000; //fixed port
 const httpSuccessStatus = 200;/*Set the Server to be always working*/
 
+
 //Set the encoding for the text that will be rendered (UTF-8)
 process.stdin.setEncoding("utf8");
 
@@ -71,6 +72,12 @@ app.set("views", path.resolve(__dirname, "templates"));
 
 /* view/templating engine */
 app.set("view engine", "ejs");
+
+
+/* This is to get the CSS working for the .ejs files. I hope that
+   this doesn't mess other stuff up. */
+app.use(express.static(__dirname + '/public'));
+
 
 //Formatting the mainpage response
 app.get("/", (request, response) => {
@@ -172,27 +179,35 @@ app.post("/confirmNewPassword", async (request, response) => {
 
     //Use MongoDB to store the data.
     let {confirmUsername, newPassword, confirmEmail} = request.body;
-    //Updates global variables.
-    currName = confirmUsername;
-    currEmail = confirmEmail;
-    currPassword = newPassword;
 
-    //For debugging purposes
-    console.log("name " + currName);
-    console.log("password: " + currPassword);
-    console.log("email " + currEmail);
+    //Checks if the username is valid.
+    let user = {userName: confirmUsername, userEmail: confirmEmail};
+    let status = await lookUpUser(client, databaseAndCollection, user);
+    if (status) {
+      //Updates global variables.
+      currName = confirmUsername;
+      currEmail = confirmEmail;
+      currPassword = newPassword;
 
-    //Stores data in form of JSON.
-    let targetValues = {userName: currName, userEmail: currEmail} //values to filter for
-    let newValue = {userPassword: currPassword}; //values to change
-    await updateUser(client, databaseAndCollection, targetValues, newValue);
+      //For debugging purposes
+      console.log("name " + currName);
+      console.log("password: " + currPassword);
+      console.log("email " + currEmail);
+
+      //Stores data in form of JSON.
+      let targetValues = {userName: currName, userEmail: currEmail} //values to filter for
+      let newValue = {userPassword: currPassword}; //values to change
+      await updateUser(client, databaseAndCollection, targetValues, newValue);
+
+      response.render("confirmNewPassword.ejs");
+    } else {
+      response.render("UserNotFound.ejs");
+    }
   } catch(e) {
     console.error(e);
   } finally {
     await client.close();
   }
-  
-  response.render("confirmNewPassword.ejs");
 });
 
 /* Updates login info for particular user. */
