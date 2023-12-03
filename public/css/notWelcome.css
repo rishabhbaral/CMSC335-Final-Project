@@ -61,6 +61,17 @@ a:visited {
     color: #944B1B;
 }
 
+#right_corner_logo {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+
 /* Color references are here: */
 /* Blue analogous: #858FE9, #85E9DF */
 /* Green analogous: #8FE985, #E9DF85 */
+
+
+
+/* This area is basically my notes area lol */
+/* The logo is 720x540 which can be 4x3 */
