@@ -77,6 +77,7 @@ app.set("view engine", "ejs");
 /* This is to get the CSS working for the .ejs files. I hope that
    this doesn't mess other stuff up. */
 app.use(express.static(__dirname + '/public'));
+app.use('/favicon.ico', express.static(__dirname + 'Favicons/favicon/ico'));
 
 
 //Formatting the mainpage response
