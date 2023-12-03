@@ -7,23 +7,25 @@
     <!-- if the favicon just isn't working, I'd say just to leave it to the side for now -->
     <link rel="icon" href="Favicons/favicon.ico" type="image/x-icon">
     <title>Weather</title>
-  </head>
+</head>
+  <h1>Welcome <%-user%></h1> 
   <body>
-    <h1>Welcome <%-user%></h1>
-    <p>Enter a City: <input type="text" name="city" id="city">&nbsp;<input type="submit" value="Check Weather" id="weatherRequest"></p>
-    <input type="submit" value="Add City" id = "addLocation">
+      Enter a City: <input type="text" id="city" onchange="getWeather()"> 
+      <br>
+      <input type="submit" value="Add City" id = "addLocation">
+
+    <script>
+      //API Information
+      const apikey = '6a86cb3210d442be873172901230110';
+      //Submit Weather request for city
+      async function getWeather(){
+            let city=document.getElementById("city").value;
+            const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=${apikey}&q=${city}&aqi=yes`);
+            const weather_json = await response.json();
+            console.log(weather_json);
+      }
+    </script>
+
   </body>
-  <script>
-    //API Information
-    const apikey = '6a86cb3210d442be873172901230110';
-    //Submit Weather request for city
-    document.getElementById("weatherRequest").onclick = getWeather(document.getElementById("city").value);
-    console.log(`City: ${document.getElementById("city").value}`);
-    async function getWeather(city){
-          console.log(`We're here! We're checking the weather in ${city}!`)
-          const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=${apikey}&q=${city}&aqi=yes`);
-          const weather_json = await response.json();
-          console.log(weather_json);
-    }
-  </script>
+
 </html>
