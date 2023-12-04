@@ -28,27 +28,38 @@ fieldset {
     background-color: #5AABE1;
     border-color: #2F95D9;
     border-style: groove;
+    border-radius: 5px;
     border-width: 5px;
 }
 
 /* This is for the regular buttons and submit buttons. */
 input[type="button"], input[type="submit"] {
     border-radius: 5px;
+    border-color: #8FE985;
     background-color: #C1E985;
+    font-size: 9.5pt;
+    font-family: tahoma;
+}
+
+input[type="button"]:hover, input[type="submit"]:hover {
+    border-radius: 5px;
+    border-color: #85E9AD;
+    background-color: #8FE985;
 }
 
 /* This is for the reset buttons. I wanted it to be a
    a different color from the submit buttons. */
-input[type="reset"] {
+input[type="reset"], input[type=button].cancelButton {
     border-radius: 5px;
+    border-color: #E9858F;
     background-color: #E985C1;
+    font-size: 9.5pt;
+    font-family: tahoma;
 }
 
-/* In case there is a cancel/reset button that is
-   not technically defined as a reset button. */
-input[type=button].cancelButton {
-    border-radius: 5px;
-    background-color: #E985C1;
+input[type="reset"]:hover, input[type=button].cancelButton:hover {
+    border-color: #E9858F;
+    background-color: #E9AD85;
 }
 
 /* The color for the unvisited links. */
@@ -61,6 +72,8 @@ a:visited {
     color: #944B1B;
 }
 
+/* The CSS for the logo when it appears in the
+   top-right corner. */
 #right_corner_logo {
     position: absolute;
     top: 10px;
@@ -70,8 +83,3 @@ a:visited {
 /* Color references are here: */
 /* Blue analogous: #858FE9, #85E9DF */
 /* Green analogous: #8FE985, #E9DF85 */
-
-
-
-/* This area is basically my notes area lol */
-/* The logo is 720x540 which can be 4x3 */

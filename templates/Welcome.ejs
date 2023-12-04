@@ -2,6 +2,11 @@
 <html>
   <meta charset="UTF-16">
   <head>
+<<<<<<< HEAD
+=======
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+>>>>>>> 9a155622b85acb53c7dd659f6b3b3edc9b31a50c
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap"
@@ -28,10 +33,15 @@
         );
         const weather_json = await response.json();
         let weatherString = "";
+<<<<<<< HEAD
         weatherString+= weather_json.location.name+", "+weather_json.location.country+"<br>";
         weatherString+=`<img src="${weather_json.current.condition.icon}">`+"<br>"+weather_json.current.condition.text+"<br>",
+=======
+        weatherString += weather_json.location.name + /*", " + weather_json.location.region +*/ ", " + weather_json.location.country + "<br>";
+        weatherString += `<img src="${weather_json.current.condition.icon}">` + "<br>" + weather_json.current.condition.text + "<br>",
+>>>>>>> 9a155622b85acb53c7dd659f6b3b3edc9b31a50c
         weatherString += weather_json.current.temp_f + "F";
-        weatherString +=" ("+weather_json.current.temp_c + "C"+")<br>";
+        weatherString += " (" + weather_json.current.temp_c + "C" + ")<br>";
         weatherString +=
           "Winds: " +
           weather_json.current.wind_mph +
@@ -39,7 +49,7 @@
           weather_json.current.wind_dir;
         // create a new div element
         const newDiv = document.createElement("div");
-        newDiv.className="weatherDiv";
+        newDiv.className = "weatherDiv";
         // and give it some content
         const newContent = newDiv.innerHTML = weatherString;
 
@@ -47,6 +57,7 @@
         const currentDiv = document.getElementById("placeholderdiv");
         document.body.insertBefore(newDiv, currentDiv);
         document.getElementById("city").value = "";
+        console.log(weather_json.location.region);
       }
     </script>
   </body>
