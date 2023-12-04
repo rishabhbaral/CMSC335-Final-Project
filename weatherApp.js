@@ -12,7 +12,7 @@ const httpSuccessStatus = 200;/*Set the Server to be always working*/
 process.stdin.setEncoding("utf8");
 
 //indicate that the server is live
-const storeServer = http.createServer(app);
+const weatherServer = http.createServer(app);
 console.log(`Web server is running at http://localhost:${portNumber}`);
 //Define the prompt that the CLI will use
 const prompt = "Type stop to shutdown the server: ";
@@ -272,4 +272,4 @@ async function clearCollection(client, databaseAndCollection) {
 
 main().catch(console.error);
 
-storeServer.listen(portNumber);
+weatherServer.listen(portNumber);
