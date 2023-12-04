@@ -34,8 +34,7 @@ let currPassword = "";
 
 /* Our database and collection for user info */
 const databaseAndCollection = {db: "ourData", collection: "weatherData"};
-/* HERE CREATE A NEW DB TO STORE CITIES */
-const databaseAndCollection2 = {db: "ourData", collection: "Cities"};
+
 const { MongoClient, ServerApiVersion } = require('mongodb');
 async function main() {
   const uri = `mongodb+srv://${username}:${password}@cluster0.vyuzvd9.mongodb.net/`;
@@ -249,11 +248,6 @@ app.get("/Homepage", (request, response) => {
 app.get("/Welcome", (request, response)=>{
   response.render("Welcome.ejs", {user: currName});
 });
-
-//Cache the cities in DB for later use
-async function insertCities(client, databaseAndCollection, locationsTracked) {
-  const result = await client.db(databaseAndCollection.db).collection(databaseAndCollection.collection).insertOne(locationsTracked);
-}
 
 /* Removes all data in current database. */
 app.get("/clearCollection", async (request, response) => {
