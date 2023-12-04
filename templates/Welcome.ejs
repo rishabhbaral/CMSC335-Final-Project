@@ -29,10 +29,10 @@
         const weather_json = await response.json();
         console.log(weather_json);
         let weatherString = "";
-        weatherString += weather_json.location.name + ", " + weather_json.location.region + ", " + weather_json.location.country + "\n";
-        weatherString += "Current Conditions are: "+ weather_json.current.condition.text + " at ",
-        weatherString += weather_json.current.temp_f + "F";
-        weatherString +="(" + weather_json.current.temp_c + "C" + ")\n";
+        weatherString+= weather_json.location.name+", "+weather_json.location.region+", "+weather_json.location.country+"\n";
+        weatherString+="Current Conditions are: "+weather_json.current.condition.text+" at ",
+        weatherString +=weather_json.current.temp_f + "F";
+        weatherString +="("+weather_json.current.temp_c + "C"+")\n";
         weatherString +=
           "Winds: " +
           weather_json.current.wind_mph +
