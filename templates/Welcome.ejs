@@ -1,31 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
-    <!-- if the favicon just isn't working, I'd say just to leave it to the side for now -->
-    <link rel="icon" href="Favicons/favicon.ico" type="image/x-icon">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap"
+      rel="stylesheet" >
+      <link rel="stylesheet" href="css/welcome.css" type="text/css">
+      <link rel="icon" href="Favicons/favicon.ico" type="image/x-icon" />
     <title>Weather</title>
-</head>
-  <h1>Welcome <%-user%></h1> 
+  </head>
+  <h1>Welcome <%-user%></h1>
   <body>
-      Enter a City: <input type="text" id="city" onchange="getWeather()"> 
-      <br>
-      <input type="submit" value="Add City" id = "addLocation">
-
+    Enter a City: <input type="text" id="city" onchange="getWeather()" />
+    <br>
+    <div id="placeholderdiv"></div>
+    <a href="/"><input type="button" id="logout" value="Logout"></a>
     <script>
       //API Information
-      const apikey = '6a86cb3210d442be873172901230110';
+      const apikey = "6a86cb3210d442be873172901230110";
       //Submit Weather request for city
-      async function getWeather(){
-            let city=document.getElementById("city").value;
-            const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=${apikey}&q=${city}&aqi=yes`);
-            const weather_json = await response.json();
-            console.log(weather_json);
+      async function getWeather() {
+        let city = document.getElementById("city").value;
+        console.log(city);
+        const response = await fetch(
+          `http://api.weatherapi.com/v1/current.json?key=${apikey}&q=${city}&aqi=yes`
+        );
+        const weather_json = await response.json();
+        console.log(weather_json);
+        let weatherString = "";
+        weatherString+= weather_json.location.name+", "+weather_json.location.region+", "+weather_json.location.country+"\n";
+        weatherString+="Current Conditions are: "+weather_json.current.condition.text+" at ",
+        weatherString +=weather_json.current.temp_f + "F";
+        weatherString +="("+weather_json.current.temp_c + "C"+")\n";
+        weatherString +=
+          "Winds: " +
+          weather_json.current.wind_mph +
+          "mph" +
+          weather_json.current.wind_dir;
+        console.log(weatherString);
+        // create a new div element
+        const newDiv = document.createElement("div");
+
+        // and give it some content
+        const newContent = document.createTextNode(weatherString);
+
+        // add the text node to the newly created div
+        newDiv.appendChild(newContent);
+
+        // add the newly created element and its content into the DOM
+        const currentDiv = document.getElementById("placeholderdiv");
+        document.body.insertBefore(newDiv, currentDiv);
       }
     </script>
-
   </body>
-
 </html>
