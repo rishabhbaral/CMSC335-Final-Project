@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap"
@@ -28,7 +29,7 @@
         );
         const weather_json = await response.json();
         let weatherString = "";
-        weatherString += weather_json.location.name + ", " + weather_json.location.region + ", " + weather_json.location.country + "<br>";
+        weatherString += weather_json.location.name + /*", " + weather_json.location.region +*/ ", " + weather_json.location.country + "<br>";
         weatherString += `<img src="${weather_json.current.condition.icon}">` + "<br>" + weather_json.current.condition.text + "<br>",
         weatherString += weather_json.current.temp_f + "F";
         weatherString += " (" + weather_json.current.temp_c + "C" + ")<br>";
@@ -47,6 +48,7 @@
         const currentDiv = document.getElementById("placeholderdiv");
         document.body.insertBefore(newDiv, currentDiv);
         document.getElementById("city").value = "";
+        console.log(weather_json.location.region);
       }
     </script>
   </body>
