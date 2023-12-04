@@ -3,9 +3,11 @@ html{
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
-    overflow: hidden;
-  
+    overflow: scroll;
+    scrollbar-color: red orange;
+    scrollbar-width: thin;
 }
+
 h1, span{
     color: white;
 }
@@ -14,6 +16,9 @@ h1, span{
     padding: 16px;
     border-radius: 5px;
     margin-bottom: 10px;
+}
+#city{
+    width: 350px;
 }
 #logout {
     line-height: 12px;
