@@ -33,13 +33,8 @@
         );
         const weather_json = await response.json();
         let weatherString = "";
-<<<<<<< HEAD
-        weatherString+= weather_json.location.name+", "+weather_json.location.country+"<br>";
-        weatherString+=`<img src="${weather_json.current.condition.icon}">`+"<br>"+weather_json.current.condition.text+"<br>",
-=======
         weatherString += weather_json.location.name + /*", " + weather_json.location.region +*/ ", " + weather_json.location.country + "<br>";
         weatherString += `<img src="${weather_json.current.condition.icon}">` + "<br>" + weather_json.current.condition.text + "<br>",
->>>>>>> 9a155622b85acb53c7dd659f6b3b3edc9b31a50c
         weatherString += weather_json.current.temp_f + "F";
         weatherString += " (" + weather_json.current.temp_c + "C" + ")<br>";
         weatherString +=
