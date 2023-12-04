@@ -4,6 +4,7 @@
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap"
@@ -15,7 +16,7 @@
   <h1>Welcome <%-user%></h1>
   <body>
     <a href="/"><input type="button" id="logout" value="Logout"></a>
-    <span>Enter a City: &nbsp;</span><input type="text" id="city" onchange="getWeather()" placeholder="City or City, Region or Zipcode (US, Canada and UK only)">
+    <span>Enter a City: &nbsp;</span><input type="text" id="city" onchange="getWeather()" placeholder="City or City, Region or Zipcode (in US, Canada and UK only)">
     <br>
     <hr>
     <div id="placeholderdiv"></div>
@@ -30,8 +31,8 @@
         );
         const weather_json = await response.json();
         let weatherString = "";
-        weatherString += weather_json.location.name + /*", " + weather_json.location.region +*/ ", " + weather_json.location.country + "<br>";
-        weatherString += `<img src="${weather_json.current.condition.icon}">` + "<br>" + weather_json.current.condition.text + "<br>",
+        weatherString+= weather_json.location.name+", "+weather_json.location.country+"<br>";
+        weatherString+=`<img src="${weather_json.current.condition.icon}">`+"<br>"+weather_json.current.condition.text+"<br>",
         weatherString += weather_json.current.temp_f + "F";
         weatherString += " (" + weather_json.current.temp_c + "C" + ")<br>";
         weatherString +=
