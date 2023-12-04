@@ -7,6 +7,7 @@ html{
     overflow: scroll;
   
 }
+
 h1, span{
     color: white;
 }
@@ -15,6 +16,9 @@ h1, span{
     padding: 16px;
     border-radius: 5px;
     margin-bottom: 10px;
+}
+#city{
+    width: 350px;
 }
 #logout {
     border-radius: 5px;
