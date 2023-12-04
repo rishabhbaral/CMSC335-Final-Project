@@ -3,7 +3,8 @@ html{
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
-    overflow: hidden;
+    /* overflow: hidden; */
+    overflow: scroll;
   
 }
 h1, span{
@@ -16,8 +17,12 @@ h1, span{
     margin-bottom: 10px;
 }
 #logout {
+    border-radius: 5px;
+    border-color: #E9858F;
+    background-color: #E985C1;
     line-height: 12px;
     width: 50px;
+    height: 20px;
     font-size: 9.5pt;
     font-family: tahoma;
     margin-top: 1px;
@@ -25,4 +30,9 @@ h1, span{
     position: absolute;
     top: 0;
     right: 0;
+}
+
+#logout:hover {
+    border-color: #E9858F;
+    background-color: #E9AD85;
 }
