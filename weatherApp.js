@@ -34,8 +34,6 @@ let currPassword = "";
 
 /* Our database and collection for user info */
 const databaseAndCollection = {db: "ourData", collection: "weatherData"};
-/* Our database and collection for cities */
-const cities = {db: "ourData", collection: "Cities"};
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
 async function main() {
