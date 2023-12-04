@@ -30,9 +30,10 @@
           `http://api.weatherapi.com/v1/current.json?key=${apikey}&q=${city}&aqi=yes`
         );
         const weather_json = await response.json();
+
         let weatherString = "";
-        weatherString+= weather_json.location.name+", "+weather_json.location.country+"<br>";
-        weatherString+=`<img src="${weather_json.current.condition.icon}">`+"<br>"+weather_json.current.condition.text+"<br>",
+        weatherString += weather_json.location.name + ", " + weather_json.location.country + "<br>";
+        weatherString += `<img src="${weather_json.current.condition.icon}">`+ "<br>" + weather_json.current.condition.text + "<br>",
         weatherString += weather_json.current.temp_f + "F";
         weatherString += " (" + weather_json.current.temp_c + "C" + ")<br>";
         weatherString +=
@@ -40,9 +41,11 @@
           weather_json.current.wind_mph +
           "mph " +
           weather_json.current.wind_dir;
+
         // create a new div element
         const newDiv = document.createElement("div");
         newDiv.className = "weatherDiv";
+        
         // and give it some content
         const newContent = newDiv.innerHTML = weatherString;
 

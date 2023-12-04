@@ -34,8 +34,9 @@ let currPassword = "";
 
 /* Our database and collection for user info */
 const databaseAndCollection = {db: "ourData", collection: "weatherData"};
-/* HERE CREATE A NEW DB TO STORE CITIES */
-const databaseAndCollection2 = {db: "ourData", collection: "Cities"};
+/* Our database and collection for cities */
+const cities = {db: "ourData", collection: "Cities"};
+
 const { MongoClient, ServerApiVersion } = require('mongodb');
 async function main() {
   const uri = `mongodb+srv://${username}:${password}@cluster0.vyuzvd9.mongodb.net/`;
