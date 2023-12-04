@@ -12,7 +12,7 @@ const httpSuccessStatus = 200;/*Set the Server to be always working*/
 process.stdin.setEncoding("utf8");
 
 //indicate that the server is live
-const storeServer = http.createServer(app);
+const weatherServer = http.createServer(app);
 console.log(`Web server is running at http://localhost:${portNumber}`);
 //Define the prompt that the CLI will use
 const prompt = "Type stop to shutdown the server: ";
@@ -249,11 +249,6 @@ app.get("/Welcome", (request, response)=>{
   response.render("Welcome.ejs", {user: currName});
 });
 
-//Cache the cities in DB for later use
-async function insertCities(client, databaseAndCollection, locationsTracked) {
-  const result = await client.db(databaseAndCollection.db).collection(databaseAndCollection.collection).insertOne(locationsTracked);
-}
-
 /* Removes all data in current database. */
 app.get("/clearCollection", async (request, response) => {
   const uri = `mongodb+srv://${username}:${password}@cluster0.vyuzvd9.mongodb.net/`;
@@ -277,4 +272,4 @@ async function clearCollection(client, databaseAndCollection) {
 
 main().catch(console.error);
 
-storeServer.listen(portNumber);
+weatherServer.listen(portNumber);
