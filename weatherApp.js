@@ -3,6 +3,7 @@ const express = require("express"); /* Accessing express module */
 const ejs = require("ejs");
 const fs = require("fs");
 const bodyParser = require("body-parser"); /* To handle post parameters */
+const cors = require("cors");
 const app = express(); /* app is a request handler function */
 const portNumber = 5000; //fixed port
 const httpSuccessStatus = 200;/*Set the Server to be always working*/
@@ -13,6 +14,7 @@ process.stdin.setEncoding("utf8");
 
 //indicate that the server is live
 const weatherServer = http.createServer(app);
+app.use(cors());
 console.log(`Web server is running at http://localhost:${portNumber}`);
 //Define the prompt that the CLI will use
 const prompt = "Type stop to shutdown the server: ";
