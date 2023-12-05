@@ -113,6 +113,11 @@ app.post("/signIn", async (request, response) => {
   }
 });
 
+// THIS PART IS THE EXPERIMENT, IF IT DOESN'T WORK, REMOVE IT!
+app.get("/AccountSignup", async(request, response) => {
+  response.render("AccountSignup", {userid: "", emailAddr: ""});
+});
+
 app.post("/AccountSignup", async (request, response) => {
   const uri = `mongodb+srv://${username}:${password}@cluster0.vyuzvd9.mongodb.net/`;
   const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
