@@ -14,14 +14,19 @@
   </head>
   <h1>Welcome <%-user%></h1>
   <body>
-    <a href="https://weatherbeetle.onrender.com/"><input type="button" id="logout" value="Logout"></a>
-    <span>Enter a City: &nbsp;</span><input type="text" id="city" onsubmit="getWeather()" placeholder="City or City, Region or Zipcode (US, Canada and UK only)">
-    <br>
-    <hr>
+    <form action="https://weatherbeetle.onrender.com/">
+      <input type="button" id="logout" value="Logout"></a>
+      <span>Enter a City: &nbsp;</span><input type="text" id="city" onsubmit="getWeather()" placeholder="City or City, Region or Zipcode (US, Canada and UK only)">
+      <br>
+      <hr>
+    </form>
+    
     <div id="placeholderdiv"></div>
+
     <script>
       //API Information
       const apikey = "ac08c1c364001a27b81d418f26e28315";
+
       //Submit Weather request for city
       async function getWeather() {
         let city = document.getElementById("city").value;
@@ -30,6 +35,7 @@
         );
         const weather_json = await response.json();
         console.log(weather_json);
+
         let weatherString = "";
         weatherString += weather_json.location.name + ", " + weather_json.location.country + "<br>";
         weatherString += `<img src="${weather_json.current.condition.icon}">` + "<br>" + weather_json.current.condition.text + "<br>",
@@ -40,6 +46,7 @@
           weather_json.current.wind_mph +
           "mph " +
           weather_json.current.wind_dir;
+
         // create a new div element
         const newDiv = document.createElement("div");
         newDiv.className = "weatherDiv";
