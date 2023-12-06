@@ -19,6 +19,7 @@
     <br>
     <hr>
     <div id="placeholderdiv"></div>
+
     <script>
       //API Information
       const apikey = "6a86cb3210d442be873172901230110";
@@ -30,6 +31,7 @@
         );
         const weather_json = await response.json();
         console.log(weather_json);
+
         let weatherString = "";
         weatherString += weather_json.location.name + ", " + weather_json.location.country + "<br>";
         weatherString += `<img src="${weather_json.current.condition.icon}">` + "<br>" + weather_json.current.condition.text + "<br>",
@@ -40,6 +42,7 @@
           weather_json.current.wind_mph +
           "mph " +
           weather_json.current.wind_dir;
+
         // create a new div element
         const newDiv = document.createElement("div");
         newDiv.className = "weatherDiv";
