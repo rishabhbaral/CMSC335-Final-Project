@@ -1,4 +1,4 @@
-# CMSC335-Final-Project
+# Weather App involving JS
 
 **Functionality**
 For an overview of the functionality of this app, please see the following video: [Application Video](https://www.youtube.com/watch?v=VXZM6pHeZJA)
