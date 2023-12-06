@@ -14,24 +14,20 @@
   </head>
   <h1>Welcome <%-user%></h1>
   <body>
-    <form action="https://weatherbeetle.onrender.com/">
-      <input type="button" id="logout" value="Logout"></a>
-      <span>Enter a City: &nbsp;</span><input type="text" id="city" onsubmit="getWeather()" placeholder="City or City, Region or Zipcode (US, Canada and UK only)">
-      <br>
-      <hr>
-    </form>
-    
+    <a href="https://weatherbeetle.onrender.com/"><input type="button" id="logout" value="Logout"></a>
+    <span>Enter a City: &nbsp;</span><input type="text" id="city" onchange="getWeather()" placeholder="City or City, Region or Zipcode (US, Canada and UK only)">
+    <br>
+    <hr>
     <div id="placeholderdiv"></div>
 
     <script>
       //API Information
-      const apikey = "ac08c1c364001a27b81d418f26e28315";
-
+      const apikey = "6a86cb3210d442be873172901230110";
       //Submit Weather request for city
       async function getWeather() {
         let city = document.getElementById("city").value;
         const response = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`
+          `https://api.weatherapi.com/v1/current.json?key=${apikey}&q=${city}`
         );
         const weather_json = await response.json();
         console.log(weather_json);
