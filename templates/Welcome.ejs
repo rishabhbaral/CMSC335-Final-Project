@@ -14,21 +14,22 @@
   </head>
   <h1>Welcome <%-user%></h1>
   <body>
-    <a href="/"><input type="button" id="logout" value="Logout"></a>
-    <span>Enter a City: &nbsp;</span><input type="text" id="city" onchange="getWeather()" placeholder="City or City, Region or Zipcode (US, Canada and UK only)">
+    <a href="https://weatherbeetle.onrender.com/"><input type="button" id="logout" value="Logout"></a>
+    <span>Enter a City: &nbsp;</span><input type="text" id="city" onsubmit="getWeather()" placeholder="City or City, Region or Zipcode (US, Canada and UK only)">
     <br>
     <hr>
     <div id="placeholderdiv"></div>
     <script>
       //API Information
-      const apikey = "6a86cb3210d442be873172901230110";
+      const apikey = "ac08c1c364001a27b81d418f26e28315";
       //Submit Weather request for city
       async function getWeather() {
         let city = document.getElementById("city").value;
         const response = await fetch(
-          `http://api.weatherapi.com/v1/current.json?key=${apikey}&q=${city}&aqi=yes`
+          `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`
         );
         const weather_json = await response.json();
+        console.log(weather_json);
         let weatherString = "";
         weatherString += weather_json.location.name + ", " + weather_json.location.country + "<br>";
         weatherString += `<img src="${weather_json.current.condition.icon}">` + "<br>" + weather_json.current.condition.text + "<br>",
