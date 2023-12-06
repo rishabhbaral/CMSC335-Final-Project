@@ -1,6 +1,7 @@
 # CMSC335-Final-Project
 
 **Functionality**
+For an overview of the functionality of this app, please see the following video: [Application Video](https://www.youtube.com/watch?v=VXZM6pHeZJA)
 1. Navigate to the following URL: https://weatherbeetle.onrender.com/
 2. You will automatically be directed to the Homepage.ejs page, where you can sign in or create a new account.
 3. If you choose to create a new account, you will be directed to the AccountCreation.ejs page, where you will be asked to enter a username, password, and email address.
