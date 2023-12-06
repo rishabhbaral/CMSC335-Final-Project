@@ -1,5 +1,6 @@
 # CMSC335-Final-Project
-
+# App Name: Weather Beetle
+# Collaborator Names: Rishabh Baral, Kevin Liao, Leo Suber
 **Functionality**
 1. Start the application with the following command: node weatherApp.js
 2. You will automatically be directed to the Homepage.ejs page, where you can sign in or create a new account.
