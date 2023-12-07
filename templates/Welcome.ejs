@@ -26,22 +26,25 @@
       //Submit Weather request for city
       async function getWeather() {
         let city = document.getElementById("city").value;
-        const response = await fetch(
+        const response1 = await fetch(
           `https://api.weatherapi.com/v1/current.json?key=${apikey}&q=${city}`
         );
-        const weather_json = await response.json();
-        console.log(weather_json);
-
+        const response2 = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${apikey}&q=${city}`);
+        const current_weather_json = await response1.json();
+        const forecast_weather_json = await response2.json();
+        console.log(current_weather_json);
+        console.log(forecast_weather_json);
+        //current conditions
         let weatherString = "";
-        weatherString += weather_json.location.name + ", " + weather_json.location.country + "<br>";
-        weatherString += `<img src="${weather_json.current.condition.icon}">` + "<br>" + weather_json.current.condition.text + "<br>",
-        weatherString += weather_json.current.temp_f + "F";
-        weatherString += " (" + weather_json.current.temp_c + "C" + ")<br>";
+        weatherString += current_weather_json.location.name + ", " + current_weather_json.location.country + "<br>";
+        weatherString += `<img src="${current_weather_json.current.condition.icon}">` + "<br>" + current_weather_json.current.condition.text + "<br>",
+        weatherString += current_weather_json.current.temp_f + "F";
+        weatherString += " (" + current_weather_json.current.temp_c + "C" + ")<br>";
         weatherString +=
           "Winds: " +
-          weather_json.current.wind_mph +
+          current_weather_json.current.wind_mph +
           "mph " +
-          weather_json.current.wind_dir;
+          current_weather_json.current.wind_dir;
 
         // create a new div element
         const newDiv = document.createElement("div");
@@ -53,7 +56,7 @@
         const currentDiv = document.getElementById("placeholderdiv");
         document.body.insertBefore(newDiv, currentDiv);
         document.getElementById("city").value = "";
-        console.log(weather_json.location.region);
+        console.log(current_weather_json.location.region);
       }
     </script>
   </body>
