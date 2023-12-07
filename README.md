@@ -1,4 +1,6 @@
-# Weather App involving JS
+# CMSC335-Final-Project
+# App Name: Weather Beetle
+# Collaborator Names: Rishabh Baral, Kevin Liao, Leo Suber
 
 **Functionality**
 For an overview of the functionality of this app, please see the following video: [Application Video](https://www.youtube.com/watch?v=VXZM6pHeZJA)
