@@ -53,3 +53,7 @@ For an overview of the functionality of this app, please see the following video
 - The user's login was successful beforehand.
 - The user is asked to enter a city.
 - Afterwards, information about the city's weather at the time is displayed.
+
+**1/15/2024**
+- Adjust the viewport in the Homepage.ejs to make the page fit on amaller screens.
+- Collaborate on additional features to add.
