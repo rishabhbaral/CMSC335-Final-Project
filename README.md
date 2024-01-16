@@ -57,3 +57,7 @@ For an overview of the functionality of this app, please see the following video
 **1/15/2024**
 - Adjust the viewport in the Homepage.ejs to make the page fit on amaller screens.
 - Collaborate on additional features to add.
+
+**1/16/2024**
+- Consider adding another parameter to the MongoDB database: cities the user has inputted.
+- For the Welcome.ejs file, consider posting the data when the user enters a location and store that location in the database.
