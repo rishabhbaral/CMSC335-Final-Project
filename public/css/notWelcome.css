@@ -9,6 +9,7 @@
 /* The titles will have this font. */
 h1 {
     font-family: 'DM Serif Display', serif;
+    font-size: 22px;
 }
 
 /* The text for the subheaders will have this font. */
