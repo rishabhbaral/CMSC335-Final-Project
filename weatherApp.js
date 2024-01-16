@@ -270,6 +270,37 @@ async function clearCollection(client, databaseAndCollection) {
                              .deleteMany({}); //deletes all content
 }
 
+// Grabs the form element and manually trigger the 'submit' method on it
+document.getElementById("weatherForm").submit();
+
+document.getElementById("weatherForm").addEventListener("submit", function (event) {
+  event.preventDefault();
+  const city = document.getElementById("city").value;
+
+  fetch("/submitWeather", {
+     method: "POST",
+     headers: {
+        "Content-Type": "application/json",
+     },
+     body: JSON.stringify({ city: city }),
+  })
+  .then(response => response.json())
+  .then(data => {
+     // Handle the response from the server
+     console.log('city is ' + data);
+  })
+  .catch(error => {
+     console.error("Error:", error);
+  });
+});
+
+app.post("/submitWeather", (req, res) => {
+  const city = req.body.city;
+  console.log('city is ' + city);
+
+  res.json({ message: "Weather data received successfully!" });
+});
+
 main().catch(console.error);
 
 weatherServer.listen(portNumber);
