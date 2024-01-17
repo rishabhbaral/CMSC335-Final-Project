@@ -270,7 +270,7 @@ async function clearCollection(client, databaseAndCollection) {
                              .deleteMany({}); //deletes all content
 }
 
-// Grabs the form element and manually trigger the 'submit' method on it
+/*Grabs the form element and manually trigger the 'submit' method on it
 document.getElementById("weatherForm").submit();
 
 document.getElementById("weatherForm").addEventListener("submit", function (event) {
@@ -302,5 +302,5 @@ app.post("/submitWeather", (req, res) => {
 });
 
 main().catch(console.error);
-
+*/
 weatherServer.listen(portNumber);
