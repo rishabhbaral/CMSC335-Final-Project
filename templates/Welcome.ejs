@@ -1,45 +1,65 @@
 <!DOCTYPE html>
 <html>
-  <meta charset="UTF-16">
+  <meta charset="UTF-16" />
   <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap"
-      rel="stylesheet" >
-      <link rel="stylesheet" href="css/welcome.css" type="text/css">
-      <link rel="icon" href="Favicons/favicon.ico" type="image/x-icon" />
+      rel="stylesheet" />
+    <link rel="stylesheet" href="css/welcome.css" type="text/css" />
+    <link rel="icon" href="Favicons/favicon.ico" type="image/x-icon" />
     <title>Weather</title>
   </head>
   <h1>Welcome <%-user%></h1>
   <body>
-    <a href="https://weatherbeetle.onrender.com/"><input type="button" id="logout" value="Logout"></a>
-    <span>Enter a City: &nbsp;</span><input type="text" id="city" onchange="getWeather()" placeholder="City or City, Region or Zipcode (US, Canada and UK only)">
-    <br>
-    <hr>
+    <a href="https://weatherbeetle.onrender.com/"
+      ><input type="button" id="logout" value="Logout"
+    /></a>
+    <span>Enter a City: &nbsp;</span
+    ><input
+      type="text"
+      id="city"
+      onchange="getWeather()"
+      placeholder="City or City, Region or Zipcode (US, Canada and UK only)" />
+    <br />
+    <hr />
     <div id="placeholderdiv"></div>
 
     <script>
       //API Information
       const apikey = "6a86cb3210d442be873172901230110";
+      //Cities Array
+      var citiesList = [];
       //Submit Weather request for city
       async function getWeather() {
         let city = document.getElementById("city").value;
         const response1 = await fetch(
           `https://api.weatherapi.com/v1/current.json?key=${apikey}&q=${city}`
         );
-        const response2 = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${apikey}&q=${city}`);
+        const response2 = await fetch(
+          `https://api.weatherapi.com/v1/forecast.json?key=${apikey}&q=${city}`
+        );
         const current_weather_json = await response1.json();
         const forecast_weather_json = await response2.json();
         console.log(current_weather_json);
         console.log(forecast_weather_json);
         //current conditions
         let weatherString = "";
-        weatherString += current_weather_json.location.name + ", " + current_weather_json.location.country + "<br>";
-        weatherString += `<img src="${current_weather_json.current.condition.icon}">` + "<br>" + current_weather_json.current.condition.text + "<br>",
-        weatherString += current_weather_json.current.temp_f + "F";
-        weatherString += " (" + current_weather_json.current.temp_c + "C" + ")<br>";
+        weatherString +=
+          current_weather_json.location.name +
+          ", " +
+          current_weather_json.location.country +
+          "<br>";
+        (weatherString +=
+          `<img src="${current_weather_json.current.condition.icon}">` +
+          "<br>" +
+          current_weather_json.current.condition.text +
+          "<br>"),
+          (weatherString += current_weather_json.current.temp_f + "F");
+        weatherString +=
+          " (" + current_weather_json.current.temp_c + "C" + ")<br>";
         weatherString +=
           "Winds: " +
           current_weather_json.current.wind_mph +
@@ -50,13 +70,21 @@
         const newDiv = document.createElement("div");
         newDiv.className = "weatherDiv";
         // and give it some content
-        const newContent = newDiv.innerHTML = weatherString;
+        const newContent = (newDiv.innerHTML = weatherString);
 
         // add the newly created element and its content into the DOM
         const currentDiv = document.getElementById("placeholderdiv");
         document.body.insertBefore(newDiv, currentDiv);
         document.getElementById("city").value = "";
         console.log(current_weather_json.location.region);
+
+        //add selected city into array, which will be placed into localstorage
+        localStorage.setItem("ListOfCities", JSON.stringify(citiesList));
+        cityList = JSON.parse(localStorage.getItem("ListOfCities"));
+        cityList.push(city);
+        localStorage.setItem("ListOfCities", JSON.stringify(ListOfCities));
+        //testing console.log
+        console.log(JSON.parse(localStorage.getItem('ListOfCities')));
       }
     </script>
   </body>
